@@ -25,5 +25,14 @@ public class Board {
 		System.out.println("gameEngine.Board");
 		System.out.println(String.valueOf(width) + "," + String.valueOf(height));
 		links = new boolean[height+1][width+1][3][3];
+		for (int i=0; i<height+1; i++) {
+			for (int j=0; j<width+1; j++) {
+				for (int k=0; k<3; k++) {
+					for (int l=0; l<3; l++) {
+						links[i][j][k][l] = false;
+					}
+				}
+			}
+		}
 	}
 }

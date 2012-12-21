@@ -10,13 +10,15 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
+import main.Main;
+
 public class MainFrame extends JFrame {	
 	private final String[] players = {"Human", "Computer"};
 	private JTextField txth, txtw;
 	
 	GamePanel pnbot;
 	
-	MainFrame(Controller controller) {		
+	MainFrame() {		
 		super("Paper Soccer");
 		this.setSize(960, 640);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +26,7 @@ public class MainFrame extends JFrame {
 		
 		this.setLayout(new GridLayout(2,1));
 		
-		pnbot = new GamePanel(controller);
+		pnbot = new GamePanel();
 		
 		JPanel pntop = new JPanel();
 		pntop.setLayout(new GridLayout(5,1));
@@ -50,13 +52,11 @@ public class MainFrame extends JFrame {
 		pnl2.add(new JLabel("Enter height"));
 		txth = new JTextField(8);
 		txth.setText("10");
-		pnbot.boardHeight = 10;
 		pnl2.add(txth);
 		pnl2.add(new JLabel("and width"));
 		txtw = new JTextField(8);
 		txtw.setText("8");
 		pnl2.add(txtw);
-		pnbot.boardWidth = 8;
 		pntop.add(pnl2);		
 		
 		pntop.add(new JPanel());
@@ -66,7 +66,8 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Start");
-				//ctl.start(pnbot.width, pnbot.height, 0, 0);
+				//
+				Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0, 0);
 			}			
 		});
 		
@@ -94,6 +95,5 @@ public class MainFrame extends JFrame {
 		
 		
 		this.add(pnbot);
-		
 	}
 }

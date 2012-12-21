@@ -5,14 +5,14 @@ import screen.*;
 
 public class Main {
 
+	public static Controller controller;
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Paper Soccer");
 
-		Controller ctl = new Controller();
+		controller = new Controller();
 
-		Screen scr = new Screen(ctl);
-		
-		System.out.println("See you later :)");
+		Screen scr = new Screen();
 	}
 
 }

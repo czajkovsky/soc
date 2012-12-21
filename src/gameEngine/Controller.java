@@ -9,8 +9,8 @@ public class Controller {
 	public Controller() {
 		System.out.println("gameEngine.Controller");
 		rand = new Random();
-		this.width = 10;
-		this.height = 8;
+		this.width = 8;
+		this.height = 10;
 	}
 	
 	public void start(int width, int height, int p1, int p2) {
@@ -39,7 +39,6 @@ public class Controller {
 		if (x1<0 || y1<0 || x2<0 || y2<0) return -1;
 		if (x1>width || x2>width || y1>height || y2>height) return -1;
 		int res = rand.nextInt(3);
-		//System.out.println(res);
 		return res;
 	}
 	
@@ -50,11 +49,11 @@ public class Controller {
 	 * 2 - p2 wins
 	 */
 	public int makeMove(int x, int y) {
-		Player player;
+		/*Player player;
 		if (nextPlayer == 0) player = player1;
 		else player = player2;
 		
-		int mv = player.makeMove(1, 1); // position has to be calculated !
+		int mv = player.makeMove(1, 1, board); // position has to be calculated !
 		switch(mv) {
 		case -1: 
 			System.out.println("Step impossible");
@@ -75,6 +74,11 @@ public class Controller {
 			return 1;
 		}
 		
+		return -1;*/
+		
+		System.out.println(x+","+y);
+		
 		return -1;
+		
 	}	
 }
