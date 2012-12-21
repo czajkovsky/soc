@@ -13,15 +13,6 @@ public class Board {
 		return posY;
 	}
 	
-	
-	protected boolean checkEdge(int x, int y) {
-		/*
-		 * return statement:
-		 * true - connection possible
-		 * false - connection impossible
-		 */
-		return true;		
-	}
 	protected void addEdge(int x, int y) {
 		
 	}
@@ -29,10 +20,10 @@ public class Board {
 		
 	}
 	
-	private boolean[][] links;
+	private boolean[][][][] links;
 	Board(int width, int height) {
 		System.out.println("gameEngine.Board");
 		System.out.println(String.valueOf(width) + "," + String.valueOf(height));
-		links = new boolean[height][width];
+		links = new boolean[height+1][width+1][3][3];
 	}
 }
