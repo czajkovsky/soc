@@ -74,11 +74,11 @@ public class Controller {
 			return 1;
 		}
 		
-		return -1;*/
+		return 0;*/
 		
 		System.out.println(x+","+y);
 		
-		return -1;
+		return 0;
 		
 	}	
 }
