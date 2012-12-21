@@ -1,7 +1,5 @@
 package screen;
 
-import gameEngine.Controller;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -17,6 +15,8 @@ public class GamePanel extends JPanel {
 	final int beginX = 120, beginY = 35;
 	void createBoard() {
 		Graphics g = this.getGraphics();
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GRAY);
 		g.drawRect(beginX+(boardWidth/2-1)*size, beginY-size, size, size);
 		g.drawRect(beginX+(boardWidth/2)*size, beginY-size, size, size);

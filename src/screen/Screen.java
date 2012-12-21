@@ -1,7 +1,5 @@
 package screen;
 
-import gameEngine.*;
-
 import javax.swing.*;
 
 public class Screen {
