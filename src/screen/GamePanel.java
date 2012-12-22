@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
 		beginX = this.getWidth()/2 - boardWidth*size/2;
 		beginY = this.getHeight()/2 - boardHeight*size/2;
 		
