@@ -40,7 +40,10 @@ public class Controller {
 		if (x1<0 || y1<0 || x2<0 || y2<0) return -1;
 		if (x1>width || x2>width || y1>height || y2>height) return -1;
 		int res = rand.nextInt(3);
-		return res;
+		//return res;
+		if (x1%2 == 0) return 1;
+		else if (y1 %2 == 0) return 2;
+		else return 0;
 	}
 	
 	/*

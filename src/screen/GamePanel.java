@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -14,11 +15,23 @@ public class GamePanel extends JPanel {
 	final int size = 30;
 	int beginX, beginY;
 	
-	void createBoard() {
+	int xpos, ypos;
+	
+	GamePanel() {
+		boardWidth = 8;
+		boardHeight = 10;
+		beginX = 160;
+		beginY = 60;
+		this.setBackground(Color.BLACK);
+		ml = new mouseListener();
+		this.setClickable(false);
+		xpos = ypos = 0;
+	}
+	
+	public void paintComponent(Graphics g) {
 		beginX = this.getWidth()/2 - boardWidth*size/2;
 		beginY = this.getHeight()/2 - boardHeight*size/2;
 		
-		Graphics g = this.getGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GRAY);
@@ -48,27 +61,17 @@ public class GamePanel extends JPanel {
 					}
 				}
 			}
-		}		
-	}
-	
-	GamePanel() {
-		boardWidth = 8;
-		boardHeight = 10;
-		beginX = 160;
-		beginY = 60;
-		this.setBackground(Color.BLACK);
-		ml = new mouseListener();
-		this.setClickable(false);
+		}
+		
+		g.setColor(Color.GREEN);
+		g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
 	}
 	
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			//System.out.println(e.getX()+","+e.getY());
-			createBoard();
-			int x = (int) Math.round((double)(e.getX()-beginX)/size);
-			int y = (int) Math.round((double)(e.getY()-beginY)/size);
-			Main.controller.makeMove(x, y);
+			Main.controller.makeMove(xpos, ypos);
+			repaint();
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {}
@@ -88,7 +91,21 @@ public class GamePanel extends JPanel {
 		}
 		else {
 			this.addMouseListener(ml);
-			createBoard();
+			repaint();
+			this.addMouseMotionListener(new MouseMotionListener() {
+				@Override
+				public void mouseDragged(MouseEvent arg0) {}
+				@Override
+				public void mouseMoved(MouseEvent e) {
+					int x = (int) Math.round((double)(e.getX()-beginX)/size);
+					int y = (int) Math.round((double)(e.getY()-beginY)/size);
+					if (x != xpos || y != ypos) {
+						xpos = x;
+						ypos = y;
+						repaint();
+					}	
+				}				
+			});
 		}
 	}
 	
