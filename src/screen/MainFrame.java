@@ -79,10 +79,12 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Start");
 				try {
-					pnbot.boardHeight = Integer.valueOf(txth.getText());
-					pnbot.boardWidth = Integer.valueOf(txtw.getText());
-					if (pnbot.boardHeight < 8 || pnbot.boardWidth < 8 || pnbot.boardHeight > 16 || pnbot.boardWidth > 16
-						|| pnbot.boardHeight%2 != 0 || pnbot.boardWidth%2 != 0) throw new Exception();
+					int bH = Integer.valueOf(txth.getText());
+					int bW = Integer.valueOf(txtw.getText());
+					if (bH < 8 || bW < 8 || bH > 16 || bW > 16
+						|| bH%2 != 0 || bW%2 != 0) throw new Exception();
+					pnbot.boardHeight = bH;
+					pnbot.boardWidth = bW;
 					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0, 0);
 					pnbot.setClickable(true);
 					playButton.setEnabled(false);
