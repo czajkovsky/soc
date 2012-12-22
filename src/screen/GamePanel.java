@@ -11,8 +11,9 @@ import main.Main;
 
 public class GamePanel extends JPanel {
 	protected int boardWidth, boardHeight;
-	final int size = 21;
-	final int beginX = 120, beginY = 35;
+	final int size = 28;
+	final int beginX = 160, beginY = 60;
+	
 	void createBoard() {
 		Graphics g = this.getGraphics();
 		g.setColor(Color.BLACK);
@@ -44,32 +45,48 @@ public class GamePanel extends JPanel {
 					}
 				}
 			}
-		}
-		
+		}		
 	}
+	
 	GamePanel() {
 		boardWidth = 8;
 		boardHeight = 10;
 		this.setBackground(Color.BLACK);
-		this.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//System.out.println(e.getX()+","+e.getY());
-				createBoard();
-				int x = (int) Math.round((double)(e.getX()-beginX)/size);
-				int y = (int) Math.round((double)(e.getY()-beginY)/size);
-				Main.controller.makeMove(x, y);
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}			
-		});
+		ml = new mouseListener();
+		this.setClickable(false);
 	}
+	
+	class mouseListener implements MouseListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			//System.out.println(e.getX()+","+e.getY());
+			createBoard();
+			int x = (int) Math.round((double)(e.getX()-beginX)/size);
+			int y = (int) Math.round((double)(e.getY()-beginY)/size);
+			Main.controller.makeMove(x, y);
+		}
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+	}
+	
+	mouseListener ml;
+	
+	void setClickable(boolean b) {
+		if (b == false) {
+			this.removeMouseListener(ml);
+		}
+		else {
+			this.addMouseListener(ml);
+			createBoard();
+		}
+	}
+	
+	
+	
 }
