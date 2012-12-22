@@ -81,7 +81,7 @@ public class MainFrame extends JFrame {
 				try {
 					pnbot.boardHeight = Integer.valueOf(txth.getText());
 					pnbot.boardWidth = Integer.valueOf(txtw.getText());
-					if (pnbot.boardHeight < 10 || pnbot.boardWidth < 8 || pnbot.boardHeight > 16 || pnbot.boardWidth > 14
+					if (pnbot.boardHeight < 8 || pnbot.boardWidth < 8 || pnbot.boardHeight > 16 || pnbot.boardWidth > 16
 						|| pnbot.boardHeight%2 != 0 || pnbot.boardWidth%2 != 0) throw new Exception();
 					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0, 0);
 					pnbot.setClickable(true);
@@ -91,6 +91,8 @@ public class MainFrame extends JFrame {
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
+					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be odd, not lower than 8 and not bigger than 16.",
+							"Error", JOptionPane.ERROR_MESSAGE);
 				}				
 			}			
 		});

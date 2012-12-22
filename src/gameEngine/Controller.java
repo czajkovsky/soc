@@ -6,6 +6,7 @@ public class Controller {
 	protected Board board;
 	private int width, height;
 	protected Player player1,player2;
+	
 	public Controller() {
 		System.out.println("gameEngine.Controller");
 		rand = new Random();

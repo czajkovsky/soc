@@ -11,10 +11,13 @@ import main.Main;
 
 public class GamePanel extends JPanel {
 	protected int boardWidth, boardHeight;
-	final int size = 28;
-	final int beginX = 160, beginY = 60;
+	final int size = 30;
+	int beginX, beginY;
 	
 	void createBoard() {
+		beginX = this.getWidth()/2 - boardWidth*size/2;
+		beginY = this.getHeight()/2 - boardHeight*size/2;
+		
 		Graphics g = this.getGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -51,6 +54,8 @@ public class GamePanel extends JPanel {
 	GamePanel() {
 		boardWidth = 8;
 		boardHeight = 10;
+		beginX = 160;
+		beginY = 60;
 		this.setBackground(Color.BLACK);
 		ml = new mouseListener();
 		this.setClickable(false);
