@@ -93,7 +93,7 @@ public class MainFrame extends JFrame {
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
-					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be odd, not lower than 8 and not bigger than 16.",
+					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}				
 			}			
