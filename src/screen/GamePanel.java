@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
 		beginY = 60;
 		this.setBackground(Color.BLACK);
 		ml = new mouseListener();
+		mml = new mouseMotionListener();
 		this.setClickable(false);
 		xpos = ypos = 0;
 	}
@@ -88,29 +89,33 @@ public class GamePanel extends JPanel {
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
+	class mouseMotionListener implements MouseMotionListener {
+		@Override
+		public void mouseDragged(MouseEvent e) {}
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			int x = (int) Math.round((double)(e.getX()-beginX)/size);
+			int y = (int) Math.round((double)(e.getY()-beginY)/size);
+			if (x != xpos || y != ypos) {
+				xpos = x;
+				ypos = y;
+				repaint();
+			}
+		}		
+	}
+	
 	mouseListener ml;
+	mouseMotionListener mml;
 	
 	void setClickable(boolean b) {
 		if (b == false) {
 			this.removeMouseListener(ml);
+			this.removeMouseMotionListener(mml);
 		}
 		else {
 			this.addMouseListener(ml);
-			repaint();
-			this.addMouseMotionListener(new MouseMotionListener() {
-				@Override
-				public void mouseDragged(MouseEvent arg0) {}
-				@Override
-				public void mouseMoved(MouseEvent e) {
-					int x = (int) Math.round((double)(e.getX()-beginX)/size);
-					int y = (int) Math.round((double)(e.getY()-beginY)/size);
-					if (x != xpos || y != ypos) {
-						xpos = x;
-						ypos = y;
-						repaint();
-					}	
-				}				
-			});
+			this.addMouseMotionListener(mml);
+			repaint();			
 		}
 	}
 	
