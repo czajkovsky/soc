@@ -23,9 +23,14 @@ public class MainFrame extends JFrame {
 	
 	MainFrame() {		
 		super("Paper Soccer");
-		this.setSize(960, 720);
+		
+		Dimension minSize = new Dimension(960,720);
+		
+		this.setSize(minSize);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		//this.setResizable(false);
+		this.setMinimumSize(minSize);
 		
 		class keyListener implements KeyListener {
 			@Override
