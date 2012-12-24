@@ -33,6 +33,14 @@ public class Controller {
 		System.out.println("gameEngine.Controller start");
 	}
 
+	public void stop() {
+		this.gameStatus = 0;
+	}
+	
+	public void undo() {
+		System.out.println("Controller.undo");
+	}
+	
 	private int nextPlayer;
 
 	Random rand;

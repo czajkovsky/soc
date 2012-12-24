@@ -31,14 +31,16 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		beginX = this.getWidth()/2 - (boardWidth+2)*size/2;
-		beginY = this.getHeight()/2 - (boardHeight+4)*size/2;
+		if(Main.controller.getGameStatus()==1) {
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.GRAY);
-		//System.out.println("w: "+Main.controller.getBoardHeight()+"h: "+Main.controller.getBoardWidth());
-	  	if(Main.controller.getGameStatus()==1) {
+			beginX = this.getWidth()/2 - (boardWidth+2)*size/2;
+			beginY = this.getHeight()/2 - (boardHeight+4)*size/2;
+		
+			//g.setColor(Color.BLACK);
+			//g.fillRect(0, 0, getWidth(), getHeight());
+			//g.setColor(Color.GRAY);
+			//System.out.println("w: "+Main.controller.getBoardHeight()+"h: "+Main.controller.getBoardWidth());
+	  	
 			for(int i=0; i<=Main.controller.getBoardHeight(); i++) {
 				for(int j=0; j<=Main.controller.getBoardWidth(); j++) {
 					for(int k=0; k<=3; k++) {
@@ -54,15 +56,15 @@ public class GamePanel extends JPanel {
 							else if(k==3) g.drawLine((j+1)*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
 						}
 					}
-				}	
+				}
 			}
 			//current pos
 			g.setColor(Color.WHITE);
 			g.fillOval(beginX+Main.controller.returnPosX()*size-4, beginY+Main.controller.returnPosY()*size-4, 8, 8);
-	  	}
-		
-		g.setColor(Color.GREEN);
-		g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
+
+			g.setColor(Color.GREEN);
+			g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
+	  	}		
 	}
 	
 	class mouseListener implements MouseListener {

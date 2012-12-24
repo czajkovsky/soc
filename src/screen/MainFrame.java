@@ -113,6 +113,8 @@ public class MainFrame extends JFrame {
 		stopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.controller.stop();
+				repaint();
 				playButton.setEnabled(true);
 				stopButton.setEnabled(false);
 				undoButton.setEnabled(false);
@@ -125,6 +127,13 @@ public class MainFrame extends JFrame {
 		});
 		
 		undoButton = new JButton("Undo");
+		undoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Main.controller.undo();
+				repaint();
+			}			
+		});
 		
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ActionListener() {
