@@ -7,10 +7,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import main.Main;
 
 public class GamePanel extends JPanel {
@@ -35,8 +31,8 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		beginX = this.getWidth()/2 - boardWidth*size/2;
-		beginY = this.getHeight()/2 - boardHeight*size/2;
+		beginX = this.getWidth()/2 - (boardWidth+2)*size/2;
+		beginY = this.getHeight()/2 - (boardHeight+4)*size/2;
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());

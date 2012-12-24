@@ -20,6 +20,7 @@ public class MainFrame extends JFrame {
 	
 	JButton playButton, stopButton, undoButton, exitButton;
 	JTextField txth, txtw;
+	JComboBox cb1, cb2;
 	
 	MainFrame() {		
 		super("Paper Soccer");
@@ -53,8 +54,8 @@ public class MainFrame extends JFrame {
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(new FlowLayout());
 		pnl1.add(new JLabel("Select players"));
-		JComboBox cb1 = new JComboBox();
-		JComboBox cb2 = new JComboBox();
+		cb1 = new JComboBox();
+		cb2 = new JComboBox();
 		for (int i=0; i<2; i++) {
 			cb1.addItem(players[i]);
 			cb2.addItem(players[i]);
@@ -95,6 +96,10 @@ public class MainFrame extends JFrame {
 					playButton.setEnabled(false);
 					stopButton.setEnabled(true);
 					undoButton.setEnabled(true);
+					cb1.setEnabled(false);
+					cb2.setEnabled(false);
+					txth.setEnabled(false);
+					txtw.setEnabled(false);
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
@@ -112,6 +117,10 @@ public class MainFrame extends JFrame {
 				stopButton.setEnabled(false);
 				undoButton.setEnabled(false);
 				pnbot.setClickable(false);
+				cb1.setEnabled(true);
+				cb2.setEnabled(true);
+				txth.setEnabled(true);
+				txtw.setEnabled(true);
 			}
 		});
 		
