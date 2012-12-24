@@ -77,11 +77,13 @@ public class GamePanel extends JPanel {
 				JOptionPane.showMessageDialog(null, "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 				Main.controller.stop();
 				MainFrame.unlockButtons();
+				repaint();
 			}
 			else if (tmp == 2) {				
 				JOptionPane.showMessageDialog(null, "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 				Main.controller.stop();
 				MainFrame.unlockButtons();
+				repaint();
 			}			
 		}
 		@Override
