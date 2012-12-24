@@ -81,6 +81,7 @@ public class Controller {
 	public int countNeighbours(int x, int y) {
 		return this.board.countNeighbours(x,y);
 	}
+	
 	/*
 	 * makeMove return statement: 0 - no winner 1 - p1 wins 2 - p2 wins
 	 */
@@ -92,8 +93,14 @@ public class Controller {
 		boolean endOfTurn=false;
 		int mv = player.makeMove(x,y,board,this.color+1);
 		if(mv==-1) System.out.println("impossible");
-		else if(mv==3) System.out.println("top player has lost");
-		else if(mv==4) System.out.println("top player has win");
+		else if(mv==3) {
+			System.out.println("top player has lost");
+			return 1;
+		}
+		else if(mv==4) {
+			System.out.println("top player has win");
+			return 2;
+		}
 		else {
 			if(mv==5) System.out.println("dead end");
 			else if(mv==1) System.out.println("reflection");

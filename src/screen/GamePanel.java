@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import main.Main;
 
@@ -57,10 +58,11 @@ public class GamePanel extends JPanel {
 					}
 				}
 			}
-			//current pos
+			//current position
 			g.setColor(Color.WHITE);
 			g.fillOval(beginX+Main.controller.returnPosX()*size-4, beginY+Main.controller.returnPosY()*size-4, 8, 8);
 
+			//mouse position
 			g.setColor(Color.GREEN);
 			g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
 	  	}		
@@ -69,8 +71,18 @@ public class GamePanel extends JPanel {
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			Main.controller.makeMove(xpos, ypos);
+			int tmp = Main.controller.makeMove(xpos, ypos);
 			repaint();
+			if (tmp == 1) {				
+				JOptionPane.showMessageDialog(null, "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+				Main.controller.stop();
+				MainFrame.unlockButtons();
+			}
+			else if (tmp == 2) {				
+				JOptionPane.showMessageDialog(null, "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+				Main.controller.stop();
+				MainFrame.unlockButtons();
+			}			
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {}

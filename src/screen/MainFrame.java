@@ -18,9 +18,9 @@ public class MainFrame extends JFrame {
 	
 	GamePanel pnbot;
 	
-	JButton playButton, stopButton, undoButton, exitButton;
-	JTextField txth, txtw;
-	JComboBox cb1, cb2;
+	static private JButton playButton, stopButton, undoButton, exitButton;
+	static private JTextField txth, txtw;
+	static private JComboBox cb1, cb2;
 	
 	MainFrame() {		
 		super("Paper Soccer");
@@ -161,4 +161,15 @@ public class MainFrame extends JFrame {
 		
 		this.add(pnbot);
 	}
+	
+	protected static void unlockButtons() {
+		playButton.setEnabled(true);
+		stopButton.setEnabled(false);
+		undoButton.setEnabled(false);
+		cb1.setEnabled(true);
+		cb2.setEnabled(true);
+		txth.setEnabled(true);
+		txtw.setEnabled(true);
+	}
+	
 }
