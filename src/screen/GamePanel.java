@@ -46,7 +46,7 @@ public class GamePanel extends JPanel {
 						if(tmp==1) g.setColor(Color.BLUE);
 						else if(tmp==2) g.setColor(Color.RED);
 						else if(tmp==3) g.setColor(Color.YELLOW);
-						else if(tmp==4) g.setColor(Color.GREEN);
+						else if(tmp==4) g.setColor(Color.BLACK);
 						if(tmp!=0) {
 							if(k==0) g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, i*size+beginY);
 							else if(k==1) g.drawLine(j*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
