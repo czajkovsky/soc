@@ -26,7 +26,8 @@ public class GamePanel extends JPanel {
 		ml = new mouseListener();
 		mml = new mouseMotionListener();
 		this.setClickable(false);
-		xpos = ypos = 0;
+		xpos = (boardWidth+2)/2;
+		ypos = (boardHeight+4)/2;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -117,12 +118,14 @@ public class GamePanel extends JPanel {
 	void setClickable(boolean b) {
 		if (b == false) {
 			this.removeMouseListener(ml);
-			this.removeMouseMotionListener(mml);
+			this.removeMouseMotionListener(mml);			
 		}
 		else {
 			this.addMouseListener(ml);
 			this.addMouseMotionListener(mml);
-			repaint();			
+			xpos = (boardWidth+2)/2;
+			ypos = (boardHeight+4)/2;
+			repaint();		
 		}
 	}
 	

@@ -16,7 +16,7 @@ import main.Main;
 public class MainFrame extends JFrame {	
 	private final String[] players = {"Human", "Computer"};	
 	
-	GamePanel pnbot;
+	static private GamePanel pnbot;
 	
 	static private JButton playButton, stopButton, undoButton, exitButton;
 	static private JTextField txth, txtw;
@@ -131,7 +131,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Main.controller.undo();
-				repaint();
+				pnbot.repaint();
 			}			
 		});
 		
@@ -170,6 +170,10 @@ public class MainFrame extends JFrame {
 		cb2.setEnabled(true);
 		txth.setEnabled(true);
 		txtw.setEnabled(true);
+	}
+	
+	public static void drawBoard() {
+		pnbot.repaint();
 	}
 	
 }
