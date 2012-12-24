@@ -34,8 +34,8 @@ public class Human implements Player {
 			int gameRes=0;
 			if(x>=1&&x<=boardWidth-1&&y>=2&&y<=boardHeight-2) gameRes=0;
 			else {
-				if((x==boardWidth/2||x==boardWidth/2-1||x==boardWidth/2+1)&&y==1) gameRes=1;
-				if((x==boardWidth/2||x==boardWidth/2-1||x==boardWidth/2+1)&&y==boardHeight-1) gameRes=2;
+				if((x==boardWidth/2||x==boardWidth/2-1||x==boardWidth/2+1)&&y==1) gameRes=3;
+				else if((x==boardWidth/2||x==boardWidth/2-1||x==boardWidth/2+1)&&y==boardHeight-1) gameRes=4;
 				else gameRes=-1;
 			}
 			if(gameRes>=0) {
@@ -82,6 +82,8 @@ public class Human implements Player {
 				}
 				else return -1;
 				Main.controller.updatePos(x,y);
+				if(gameRes==0) {}
+				else return gameRes;
 				
 			}
 			else return -1;

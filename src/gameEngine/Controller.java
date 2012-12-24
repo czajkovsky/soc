@@ -80,9 +80,13 @@ public class Controller {
 		
 		boolean endOfTurn=false;
 		int mv = player.makeMove(x,y,board,this.color+1);
-		this.color+=1;
-		this.color%=2;
-
+		if(mv==3) System.out.println("top player has lost");
+		else if(mv==4) System.out.println("top player has win");
+		else {
+			System.out.println("we're still playing");
+			this.color+=1;
+			this.color%=2;
+		}
 		return 0;
 
 	}
