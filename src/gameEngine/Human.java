@@ -82,7 +82,12 @@ public class Human implements Player {
 				}
 				else return -1;
 				Main.controller.updatePos(x,y);
-				if(gameRes==0) {}
+				if(gameRes==0) {
+					int neighbours=Main.controller.countNeighbours(x, y);
+					if(neighbours==1) return 0;
+					else if(neighbours==8) return 5;
+					else return 1;
+				}
 				else return gameRes;
 				
 			}
@@ -91,10 +96,6 @@ public class Human implements Player {
 		else {
 			return -1;
 		}
-		
-		
-		
-		return 0;
 	}
 
 }

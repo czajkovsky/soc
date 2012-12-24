@@ -19,6 +19,23 @@ public class Board {
 	protected int getY() {
 		return posY;
 	}
+	private int ifE(int i, int j, int k) {
+		if(links[i][j][k]>0) return 1;
+		else return 0;
+	}
+	
+	protected int countNeighbours(int x, int y) {
+		int res=0;
+		res+=ifE(y,x,0);
+		res+=ifE(y,x,2);
+		res+=ifE(y,x,1);
+		res+=ifE(y-1,x,3);
+		res+=ifE(y-1,x,1);
+		res+=ifE(y-1,x-1,2);
+		res+=ifE(y,x-1,3);
+		res+=ifE(y,x-1,0);
+		return res;
+	}
 	protected int getLinks(int i, int j, int k) {
 		return links[i][j][k];
 	}
