@@ -13,6 +13,7 @@ import main.Main;
 public class GamePanel extends JPanel {
 	protected int boardWidth, boardHeight;
 	final int size = 30;
+	final int circleSize = 6;
 	int beginX, beginY;
 	
 	int xpos, ypos;
@@ -61,11 +62,11 @@ public class GamePanel extends JPanel {
 			}
 			//current position
 			g.setColor(Color.WHITE);
-			g.fillOval(beginX+Main.controller.returnPosX()*size-4, beginY+Main.controller.returnPosY()*size-4, 8, 8);
+			g.fillOval(beginX+Main.controller.returnPosX()*size-circleSize/2, beginY+Main.controller.returnPosY()*size-circleSize/2, circleSize, circleSize);
 
 			//mouse position
 			g.setColor(Color.GREEN);
-			g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
+			g.fillOval(beginX+xpos*size-circleSize/2, beginY+ypos*size-circleSize/2, circleSize, circleSize);
 	  	}		
 	}
 	
@@ -74,14 +75,14 @@ public class GamePanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			int tmp = Main.controller.makeMove(xpos, ypos);
 			repaint();
-			if (tmp == 1) {				
-				JOptionPane.showMessageDialog(null, "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+			if (tmp == 1) {
+				JOptionPane.showMessageDialog(getParent(), "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 				Main.controller.stop();
 				MainFrame.unlockButtons();
 				repaint();
 			}
 			else if (tmp == 2) {				
-				JOptionPane.showMessageDialog(null, "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(getParent(), "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
 				Main.controller.stop();
 				MainFrame.unlockButtons();
 				repaint();

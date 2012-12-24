@@ -37,8 +37,9 @@ public class Controller {
 		this.gameStatus = 0;
 	}
 	
-	public void undo() {
+	public int undo() {
 		System.out.println("Controller.undo");
+		return 0;
 	}
 	
 	private int nextPlayer;
