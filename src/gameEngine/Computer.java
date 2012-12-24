@@ -3,7 +3,7 @@ package gameEngine;
 public class Computer implements Player {
 
 	@Override
-	public int makeMove(int x, int y, Board board) {
+	public int makeMove(int x, int y, Board board, int val) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -1,7 +1,7 @@
 package gameEngine;
 
 public interface Player {
-	int makeMove(int x, int y, Board board);
+	int makeMove(int x, int y, Board board, int val);
 	/*
 	 * return statements:
 	 * -1 - step impossible, has to be changed

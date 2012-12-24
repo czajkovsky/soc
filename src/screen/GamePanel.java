@@ -41,33 +41,29 @@ public class GamePanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GRAY);
-		g.drawRect(beginX+(boardWidth/2-1)*size, beginY-size, size, size);
-		g.drawRect(beginX+(boardWidth/2)*size, beginY-size, size, size);
-		g.drawRect(beginX+(boardWidth/2-1)*size, beginY+boardHeight*size, size, size);
-		g.drawRect(beginX+(boardWidth/2)*size, beginY+boardHeight*size, size, size);
-		for (int i=beginY; i<beginY+boardHeight*size; i+=size) {
-			for (int j=beginX; j<beginX+boardWidth*size; j+=size) {	
-				g.drawRect(j, i, size, size);
-			}
-		}
-		
-		for (int i=beginY; i<=beginY+boardHeight*size; i+=size) {
-			for (int j=beginX; j<=beginX+boardWidth*size; j+=size) {	
-				for (int k=i-size; k<=i+size; k+=size) {
-					for (int l = j-size; l<=j+size; l+=size) {
-						int tmp = Main.controller.getLink((j-beginX)/size,(i-beginY)/size,(l-beginX)/size,(k-beginY)/size);
-						if (tmp == 1) {
-							g.setColor(Color.BLUE);
-							g.drawLine(j, i, l, k);
-						}
-						else if (tmp == 2) {
-							g.setColor(Color.RED);
-							g.drawLine(j, i, l, k);
+		//System.out.println("w: "+Main.controller.getBoardHeight()+"h: "+Main.controller.getBoardWidth());
+	  	if(Main.controller.getGameStatus()==1) {
+			for(int i=0; i<=Main.controller.getBoardHeight(); i++) {
+				for(int j=0; j<=Main.controller.getBoardWidth(); j++) {
+					for(int k=0; k<=3; k++) {
+						int tmp=Main.controller.boardLinks(i,j,k);
+						if(tmp==1) g.setColor(Color.BLUE);
+						else if(tmp==2) g.setColor(Color.RED);
+						else if(tmp==3) g.setColor(Color.YELLOW);
+						else if(tmp==4) g.setColor(Color.GREEN);
+						if(tmp!=0) {
+							if(k==0) g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, i*size+beginY);
+							else if(k==1) g.drawLine(j*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+							else if(k==2) g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, (i+1)*size+beginY);
+							else if(k==3) g.drawLine((j+1)*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
 						}
 					}
-				}
+				}	
 			}
-		}
+			//current pos
+			g.setColor(Color.WHITE);
+			g.fillOval(beginX+Main.controller.returnPosX()*size-4, beginY+Main.controller.returnPosY()*size-4, 8, 8);
+	  	}
 		
 		g.setColor(Color.GREEN);
 		g.fillOval(beginX+xpos*size-4, beginY+ypos*size-4, 8, 8);
