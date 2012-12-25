@@ -6,15 +6,12 @@ public class Controller {
 	private int color;
 	private int gameStatus;
 	protected Board board;
-	private int width, height;
-	protected Player player1, player2;
+	protected Player[] player;
 
 	public Controller() {
 		this.gameStatus = 0;
 		System.out.println("gameEngine.Controller");
 		rand = new Random();
-		this.width = 8;
-		this.height = 10;
 	}
 
 	public int getGameStatus() {
@@ -25,10 +22,9 @@ public class Controller {
 		this.color=1;
 		this.gameStatus = 1;
 		board = new Board(width, height);
-		this.width = width;
-		this.height = height;
-		player1 = new Human(2);
-		player2 = (p2 == 0) ? (new Human(1)) : (new Computer(1));
+		player = new Player[2];
+		player[0] = new Human(2);
+		player[1] = (p2 == 0) ? (new Human(1)) : (new Computer(1));
 		System.out.println("gameEngine.Controller start");
 	}
 
@@ -88,12 +84,12 @@ public class Controller {
 	 * makeMove return statement: 0 - no winner 1 - p1 wins 2 - p2 wins
 	 */
 	public int makeMove(int x, int y) {
-		Player player;
-		if (this.color == 1) player = player1;
-		else player = player2;
+		Player curPlayer;
+		if (this.color == 1) curPlayer = player[0];
+		else curPlayer = player[1];
 		
 		boolean endOfTurn=false;
-		int mv = player.makeMove(x,y,board);
+		int mv = curPlayer.makeMove(x,y,board);
 		if(mv==-1) System.out.println("impossible");
 		else if(mv==3) {
 			System.out.println("top player has lost");
@@ -110,8 +106,13 @@ public class Controller {
 				System.out.println("change player");
 				this.color+=1;
 				this.color%=2;
+				if (!player[0].getClass().equals(player[1].getClass())) {
+					curPlayer = player[this.color];
+					mv = curPlayer.makeMove(0, 0, board);
+				}
 			}
-		}
+		}		
+		
 		return 0;
 	}
 }

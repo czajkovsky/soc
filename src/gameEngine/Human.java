@@ -19,7 +19,7 @@ public class Human implements Player {
 	
 	@Override
 	public int makeMove(int x, int y, Board board) {
-		System.out.println(val);
+
 		int boardWidth=Main.controller.getBoardWidth();
 		int boardHeight=Main.controller.getBoardHeight();
 		int posX=Main.controller.returnPosX();
