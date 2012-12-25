@@ -141,7 +141,19 @@ public class GamePanel extends JPanel {
 				Main.controller.stop();
 				MainFrame.unlockButtons();
 				repaint();
-			}			
+			}
+			else if (tmp == 3) {
+				JOptionPane.showMessageDialog(getParent(), "As Player 2 got stuck, Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+				Main.controller.stop();
+				MainFrame.unlockButtons();
+				repaint();
+			}
+			else if (tmp == 4) {
+				JOptionPane.showMessageDialog(getParent(), "As Player 1 got stuck, Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+				Main.controller.stop();
+				MainFrame.unlockButtons();
+				repaint();
+			}
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {}

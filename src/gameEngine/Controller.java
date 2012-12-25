@@ -106,20 +106,23 @@ public class Controller {
 			System.out.println("top player has win");
 			return 2;
 		}
-		else {
-			if(mv==5) System.out.println("dead end");
-			else if(mv==1) System.out.println("reflection");
-			else if(mv==0) {
-				System.out.println("change player");
-				this.color+=1;
-				this.color%=2;
-				if (!player[0].getClass().equals(player[1].getClass())) {
-					curPlayer = player[this.color];
-					mv = curPlayer.makeMove(0, 0, board);
-				}
+		else if(mv==5) { 
+			System.out.println("dead end");
+			if (this.color == 1)
+				return 3;
+			else
+				return 4;
+			}
+		else if(mv==1) System.out.println("reflection");
+		else if(mv==0) {
+			System.out.println("change player");
+			this.color+=1;
+			this.color%=2;
+			if (!player[0].getClass().equals(player[1].getClass())) {
+				curPlayer = player[this.color];
+				mv = curPlayer.makeMove(0, 0, board);
 			}
 		}		
-		
 		return 0;
 	}
 }
