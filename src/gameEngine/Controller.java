@@ -32,9 +32,11 @@ public class Controller {
 		this.gameStatus = 0;
 	}
 	
-	public int undo() {
-		System.out.println("Controller.undo");
-		return 0;
+	public void undo() {
+        int tmpColor = this.board.removeEdge();
+        if (tmpColor >= 0) {
+            this.color = tmpColor;
+        }
 	}
 
 	Random rand;

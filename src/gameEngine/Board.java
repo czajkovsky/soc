@@ -1,8 +1,11 @@
 package gameEngine;
 
+import java.util.Stack;
+
 public class Board {
 	private int posX,posY,boardHeight,boardWidth;
 	private int[][][] links;
+    private Stack<Integer[]> movements;
 	protected void setPos(int x, int y) {
 		posX = x;
 		posY = y;
@@ -40,10 +43,21 @@ public class Board {
 		return links[i][j][k];
 	}
 	protected void addEdge(int y, int x, int k, int val) {
+        movements.push(new Integer[] {posX, posY, x, y, k});
 		links[y][x][k]=val;
 	}
-	protected void removeEdge() {
-		
+	protected int removeEdge() {
+        if (!movements.empty()) {
+            int tmp = links[movements.peek()[3]][movements.peek()[2]][movements.peek()[4]];
+            links[movements.peek()[3]][movements.peek()[2]][movements.peek()[4]] = 0;
+            setPos(movements.peek()[0], movements.peek()[1]);
+            movements.pop();
+            return tmp-1;
+        }
+        else {
+            System.out.println("Stack is empty");
+            return -1;
+        }
 	}
 	Board(int width, int height) {
 		boardHeight=height+4;
@@ -53,6 +67,7 @@ public class Board {
 		System.out.println("gameEngine.Board");
 		System.out.println(String.valueOf(width) + "," + String.valueOf(height));
 		links = new int[boardHeight+1][boardWidth+1][4];
+		movements = new Stack<Integer[]>();
 		/*
 		 * 0 - brak
 		 * 1 - player 1
