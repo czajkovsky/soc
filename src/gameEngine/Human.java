@@ -5,8 +5,8 @@ import main.Main;
 
 
 public class Human implements Player {
-	Human() {
-		
+	Human(int val) {
+		this.val = val;
 	}
 
 	@Override
@@ -15,9 +15,11 @@ public class Human implements Player {
 		
 	}
 
+	final int val;
+	
 	@Override
-	public int makeMove(int x, int y, Board board, int val) {
-		
+	public int makeMove(int x, int y, Board board) {
+		System.out.println(val);
 		int boardWidth=Main.controller.getBoardWidth();
 		int boardHeight=Main.controller.getBoardHeight();
 		int posX=Main.controller.returnPosX();

@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,6 +15,7 @@ public class GamePanel extends JPanel {
 	protected int boardWidth, boardHeight;
 	final int size = 30;
 	final int circleSize = 6;
+	final int lineSize = 2;
 	int beginX, beginY;
 	
 	int xpos, ypos;
@@ -74,10 +76,36 @@ public class GamePanel extends JPanel {
 						else if(tmp==2) g.setColor(Color.RED);
 						else if(tmp==3) g.setColor(Color.YELLOW);
 						if(tmp!=0&&tmp!=4) {
-							if(k==0) g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, i*size+beginY);
-							else if(k==1) g.drawLine(j*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
-							else if(k==2) g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, (i+1)*size+beginY);
-							else if(k==3) g.drawLine((j+1)*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+							Polygon p = new Polygon();
+							if(k==0) {
+								p.addPoint(j*size+beginX, i*size+beginY);
+								p.addPoint((j+1)*size+beginX, i*size+beginY);
+								p.addPoint((j+1)*size+beginX, i*size+beginY+lineSize);
+								p.addPoint(j*size+beginX, i*size+beginY+lineSize);
+								//g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, i*size+beginY);
+							}
+							else if(k==1) {
+								p.addPoint(j*size+beginX, i*size+beginY);
+								p.addPoint(j*size+beginX, (i+1)*size+beginY);
+								p.addPoint(j*size+beginX+lineSize, (i+1)*size+beginY);
+								p.addPoint(j*size+beginX+lineSize, i*size+beginY);
+								//g.drawLine(j*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+							}
+							else if(k==2) {
+								p.addPoint(j*size+beginX, i*size+beginY);
+								p.addPoint((j+1)*size+beginX, (i+1)*size+beginY);
+								p.addPoint((j+1)*size+beginX, (i+1)*size+beginY+lineSize);
+								p.addPoint(j*size+beginX, i*size+beginY+lineSize);
+								//g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, (i+1)*size+beginY);
+							}
+							else if(k==3) {
+								p.addPoint((j+1)*size+beginX, i*size+beginY);
+								p.addPoint(j*size+beginX, (i+1)*size+beginY);
+								p.addPoint(j*size+beginX, (i+1)*size+beginY+lineSize);
+								p.addPoint((j+1)*size+beginX, i*size+beginY+lineSize);
+								//g.drawLine((j+1)*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+							}
+							g.fillPolygon(p);
 						}
 					}
 				}

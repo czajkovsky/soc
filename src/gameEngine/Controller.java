@@ -21,15 +21,14 @@ public class Controller {
 		return this.gameStatus;
 	}
 
-	public void start(int width, int height, int p1, int p2) {
+	public void start(int width, int height, int p2) {
 		this.color=1;
 		this.gameStatus = 1;
 		board = new Board(width, height);
 		this.width = width;
 		this.height = height;
-		player1 = (p1 == 0) ? (new Human()) : (new Computer());
-		player2 = (p2 == 0) ? (new Human()) : (new Computer());
-		nextPlayer = 0;
+		player1 = new Human(2);
+		player2 = (p2 == 0) ? (new Human(1)) : (new Computer(1));
 		System.out.println("gameEngine.Controller start");
 	}
 
@@ -41,8 +40,6 @@ public class Controller {
 		System.out.println("Controller.undo");
 		return 0;
 	}
-	
-	private int nextPlayer;
 
 	Random rand;
 
@@ -92,11 +89,11 @@ public class Controller {
 	 */
 	public int makeMove(int x, int y) {
 		Player player;
-		if (nextPlayer == 0) player = player1;
-		else player =player2;
+		if (this.color == 1) player = player1;
+		else player = player2;
 		
 		boolean endOfTurn=false;
-		int mv = player.makeMove(x,y,board,this.color+1);
+		int mv = player.makeMove(x,y,board);
 		if(mv==-1) System.out.println("impossible");
 		else if(mv==3) {
 			System.out.println("top player has lost");
@@ -116,6 +113,5 @@ public class Controller {
 			}
 		}
 		return 0;
-
 	}
 }

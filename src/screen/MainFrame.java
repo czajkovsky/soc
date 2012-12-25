@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 	
 	static private JButton playButton, stopButton, undoButton, exitButton;
 	static private JTextField txth, txtw;
-	static private JComboBox cb1, cb2;
+	static private JComboBox cb1;
 	
 	MainFrame() {		
 		super("Paper Soccer");
@@ -53,16 +53,12 @@ public class MainFrame extends JFrame {
 		
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(new FlowLayout());
-		pnl1.add(new JLabel("Select players"));
+		pnl1.add(new JLabel("Select opponent"));
 		cb1 = new JComboBox();
-		cb2 = new JComboBox();
 		for (int i=0; i<2; i++) {
 			cb1.addItem(players[i]);
-			cb2.addItem(players[i]);
 		}
 		pnl1.add(cb1);
-		pnl1.add(new JLabel("vs"));
-		pnl1.add(cb2);
 		pntop.add(pnl1);
 		
 		JPanel pnl2 = new JPanel();
@@ -91,13 +87,12 @@ public class MainFrame extends JFrame {
 						|| bH%2 != 0 || bW%2 != 0) throw new Exception();
 					pnbot.boardHeight = bH;
 					pnbot.boardWidth = bW;
-					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0, 0);
+					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0);
 					pnbot.setClickable(true);
 					playButton.setEnabled(false);
 					stopButton.setEnabled(true);
 					undoButton.setEnabled(true);
 					cb1.setEnabled(false);
-					cb2.setEnabled(false);
 					txth.setEnabled(false);
 					txtw.setEnabled(false);
 				}
@@ -120,7 +115,6 @@ public class MainFrame extends JFrame {
 				undoButton.setEnabled(false);
 				pnbot.setClickable(false);
 				cb1.setEnabled(true);
-				cb2.setEnabled(true);
 				txth.setEnabled(true);
 				txtw.setEnabled(true);
 			}
@@ -167,7 +161,6 @@ public class MainFrame extends JFrame {
 		stopButton.setEnabled(false);
 		undoButton.setEnabled(false);
 		cb1.setEnabled(true);
-		cb2.setEnabled(true);
 		txth.setEnabled(true);
 		txtw.setEnabled(true);
 	}
