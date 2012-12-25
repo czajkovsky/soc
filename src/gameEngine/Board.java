@@ -46,18 +46,17 @@ public class Board {
         movements.push(new Integer[] {posX, posY, x, y, k});
 		links[y][x][k]=val;
 	}
-	protected int removeEdge() {
+	protected int removeEdge(int colorFlag) {
         if (!movements.empty()) {
             int tmp = links[movements.peek()[3]][movements.peek()[2]][movements.peek()[4]];
-            links[movements.peek()[3]][movements.peek()[2]][movements.peek()[4]] = 0;
-            setPos(movements.peek()[0], movements.peek()[1]);
-            movements.pop();
-            return tmp-1;
+            if ((colorFlag >= 0 && colorFlag == tmp-1) || colorFlag == -1) {
+            	links[movements.peek()[3]][movements.peek()[2]][movements.peek()[4]] = 0;
+                setPos(movements.peek()[0], movements.peek()[1]);
+                movements.pop();
+                return tmp-1;
+            }
         }
-        else {
-            System.out.println("Stack is empty");
-            return -1;
-        }
+        return -1;
 	}
 	Board(int width, int height) {
 		boardHeight=height+4;

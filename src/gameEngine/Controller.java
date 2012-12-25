@@ -32,10 +32,15 @@ public class Controller {
 		this.gameStatus = 0;
 	}
 	
-	public void undo() {
-        int tmpColor = this.board.removeEdge();
+	public void undo(int flag) {
+        int tmpColor = this.board.removeEdge(-1); // -1 normal redo, >-1 loop redo
         if (tmpColor >= 0) {
             this.color = tmpColor;
+            System.out.println(tmpColor);
+            while (flag >= 0 && ((tmpColor = this.board.removeEdge(tmpColor)) == this.color)) {
+            	System.out.println(tmpColor);
+            	continue;
+            }
         }
 	}
 

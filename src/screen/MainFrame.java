@@ -124,7 +124,13 @@ public class MainFrame extends JFrame {
 		undoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Main.controller.undo();
+				if ((arg0.getModifiers() & ActionEvent.CTRL_MASK) == ActionEvent.CTRL_MASK)
+				{
+					Main.controller.undo(0);
+				}
+				else {
+					Main.controller.undo(-1);
+				}
 				pnbot.repaint();
 			}			
 		});
