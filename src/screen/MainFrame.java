@@ -139,7 +139,7 @@ public class MainFrame extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					JOptionPane.showMessageDialog(null, "Exit button pressed.", "Exit", JOptionPane.WARNING_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Exit button pressed.", "Exit", JOptionPane.WARNING_MESSAGE);
 					System.exit(0);
 			}			
 		});

@@ -55,6 +55,10 @@ public class Controller {
 		return this.board.getHeight();
 	}
 	
+	public int getCurrentPlayer() {
+		return this.color+1;
+	}
+	
 	public void updatePos(int x,int y) {
 		this.board.setPos(x,y);
 	}

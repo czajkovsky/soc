@@ -32,13 +32,35 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+		super.paintComponent(g);		
 		
 		if(Main.controller.getGameStatus()==1) {
 		
+			String str = new String("Current player: ");
+			g.setColor(Color.WHITE);
+			g.drawChars(str.toCharArray(), 0, str.length(), 10, 30);
+			
+			if (Main.controller.getCurrentPlayer() == 1) {
+				str = "player 1";
+				g.setColor(Color.BLUE);
+			}
+			else {
+				str = "player 2";
+				g.setColor(Color.RED);
+			}
+			g.drawChars(str.toCharArray(), 0, str.length(), 10, 50);
+			
 			beginX = this.getWidth()/2 - (boardWidth+2)*size/2;
 			beginY = this.getHeight()/2 - (boardHeight+4)*size/2;
 		
+			str = "player 1's target";
+			g.setColor(Color.BLUE);
+			g.drawChars(str.toCharArray(), 0, str.length(), beginX, beginY+3*size/2);
+			
+			str = "player 2's target";
+			g.setColor(Color.RED);
+			g.drawChars(str.toCharArray(), 0, str.length(), beginX, beginY+(Main.controller.getBoardHeight()-1)*size);
+			
 			//g.setColor(Color.BLACK);
 			//g.fillRect(0, 0, getWidth(), getHeight());
 			//g.setColor(Color.GRAY);
