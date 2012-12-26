@@ -121,6 +121,7 @@ public class MainFrame extends JFrame {
 		});
 		
 		undoButton = new JButton("Undo");
+		undoButton.setToolTipText("Press ctrl to undo move and reflections");
 		undoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
