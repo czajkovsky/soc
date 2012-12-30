@@ -57,9 +57,8 @@ public class MainFrame extends JFrame {
 		pnl1.setLayout(new FlowLayout());
 		pnl1.add(new JLabel("Select opponent"));
 		cb1 = new JComboBox();
-		for (int i=0; i<2; i++) {
-			cb1.addItem(players[i]);
-		}
+		for (int i=0; i<2; i++) cb1.addItem(players[i]);
+		cb1.enable(false);
 		pnl1.add(cb1);
 		pntop.add(pnl1);
 		
