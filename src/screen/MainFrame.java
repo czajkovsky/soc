@@ -94,11 +94,14 @@ public class MainFrame extends JFrame {
 					int bW = Integer.valueOf(txtw.getText());
 					int bE = Integer.valueOf(txtedges.getText());
 					if (bH < 8 || bW < 8 || bH > 16 || bW > 16
-						|| bH%2 != 0 || bW%2 != 0 || bE % 1 != 0) throw new Exception();
+						|| bH%2 != 0 || bW%2 != 0 || bE % 1 != 0 || bE < 0) throw new Exception();
 					pnbot.boardHeight = bH;
 					pnbot.boardWidth = bW;
-					pnbot.maxEdges = bE;
-					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0);
+					if (bE == 0)
+						pnbot.maxEdges = bE;
+					else
+						pnbot.maxEdges = bE+1;
+					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, 0);
 					pnbot.setClickable(true);
 					playButton.setEnabled(false);
 					stopButton.setEnabled(true);
@@ -110,7 +113,7 @@ public class MainFrame extends JFrame {
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
-					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16. In addition, only number values can be accepted.",
+					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16. In addition, only positive number values can be accepted.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}				
 			}			

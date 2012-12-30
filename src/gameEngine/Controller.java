@@ -18,10 +18,10 @@ public class Controller {
 		return this.gameStatus;
 	}
 
-	public void start(int width, int height, int p2) {
+	public void start(int width, int height, int maxEdges, int p2) {
 		this.color=1;
 		this.gameStatus = 1;
-		board = new Board(width, height);
+		board = new Board(width, height, maxEdges);
 		//creating two players
 		player = new Player[2];
 		player[0] = new Human(2);
@@ -38,7 +38,6 @@ public class Controller {
         int tmpColor = this.board.removeEdge(-1); 
         if (tmpColor >= 0) {
             this.color = tmpColor;
-            System.out.println(tmpColor);
             while (flag >= 0 && ((tmpColor = this.board.removeEdge(tmpColor)) == this.color)) {
             	continue;
             }
@@ -113,7 +112,9 @@ public class Controller {
 			else
 				return 4;
 			}
-		else if(mv==1) System.out.println("reflection");
+		else if(mv==1) {
+			System.out.println("reflection");
+		}
 		else if(mv==0) {
 			System.out.println("change player");
 			this.color+=1;
@@ -122,7 +123,8 @@ public class Controller {
 				curPlayer = player[this.color];
 				mv = curPlayer.makeMove(0, 0, board);
 			}
-		}		
+		}
+		
 		return 0;
 	}
 }
