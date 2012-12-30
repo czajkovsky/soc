@@ -30,7 +30,6 @@ public class MainFrame extends JFrame {
 		this.setSize(minSize);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		//this.setResizable(false);
 		this.setMinimumSize(minSize);
 		
 		class keyListener implements KeyListener {
@@ -139,7 +138,6 @@ public class MainFrame extends JFrame {
 		exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					//JOptionPane.showMessageDialog(null, "Exit button pressed.", "Exit", JOptionPane.WARNING_MESSAGE);
 					System.exit(0);
 			}			
 		});

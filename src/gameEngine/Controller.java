@@ -33,7 +33,8 @@ public class Controller {
 	}
 	
 	public void undo(int flag) {
-        int tmpColor = this.board.removeEdge(-1); // -1 normal redo, >-1 loop redo
+		// -1 normal redo, >-1 loop redo
+        int tmpColor = this.board.removeEdge(-1); 
         if (tmpColor >= 0) {
             this.color = tmpColor;
             System.out.println(tmpColor);
@@ -47,8 +48,11 @@ public class Controller {
 	Random rand;
 
 	/*
-	 * getLink return statement: -1 - connection impossible 0 - not connected 1
-	 * - connected by player 1 2 - connected by player 2
+ 	getLink return statement: 
+ 	-1 - connection impossible 
+ 	0 - not connected 
+	1 - connected by player 1 
+	2 - connected by player 2
 	 */
 
 	public int getBoardHeight() {
@@ -88,7 +92,10 @@ public class Controller {
 	}
 	
 	/*
-	 * makeMove return statement: 0 - no winner 1 - p1 wins 2 - p2 wins
+	 * makeMove return statement: 
+	 * 0 - no winner 
+	 * 1 - player 1 wins
+	 * 2 - player 2 wins
 	 */
 	public int makeMove(int x, int y) {
 		Player curPlayer;

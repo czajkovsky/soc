@@ -67,20 +67,6 @@ public class Board {
 		System.out.println(String.valueOf(width) + "," + String.valueOf(height));
 		links = new int[boardHeight+1][boardWidth+1][4];
 		movements = new Stack<Integer[]>();
-		/*
-		 * 0 - brak
-		 * 1 - player 1
-		 * 2 - player 2
-		 * 3 - board
-		 * 4 - hidden
-		 */
-		
-		/*
-		 * 0 - lewy
-		 * 1 - górny
-		 * 2 - \
-		 * 3 - /
-		 */
 		
 		for(int i=0; i<boardHeight; i++) {
 			for(int j=0; j<boardWidth; j++) {
@@ -120,18 +106,5 @@ public class Board {
 		links[1][boardWidth/2-1][1]=3;
 		links[1][boardWidth/2-1][0]=3;
 		links[1][boardWidth/2+1][1]=3;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
 	}
 }

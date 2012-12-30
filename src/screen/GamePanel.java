@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
 	int xpos, ypos;
 	
 	GamePanel() {
+		//default size of board
 		boardWidth = 8;
 		boardHeight = 10;
 		beginX = 160;
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel {
 		ml = new mouseListener();
 		mml = new mouseMotionListener();
 		this.setClickable(false);
+		//middle position of goal-posts
 		xpos = (boardWidth+2)/2;
 		ypos = (boardHeight+4)/2;
 	}
@@ -62,11 +64,6 @@ public class GamePanel extends JPanel {
 			str = "player 2's target";
 			g.setColor(Color.RED);
 			g.drawChars(str.toCharArray(), 0, str.length(), beginX, beginY+(Main.controller.getBoardHeight()-1)*size);
-			
-			//g.setColor(Color.BLACK);
-			//g.fillRect(0, 0, getWidth(), getHeight());
-			//g.setColor(Color.GRAY);
-			//System.out.println("w: "+Main.controller.getBoardHeight()+"h: "+Main.controller.getBoardWidth());
 	  	
 			for(int i=0; i<=Main.controller.getBoardHeight(); i++) {
 				for(int j=0; j<=Main.controller.getBoardWidth(); j++) {
@@ -77,44 +74,43 @@ public class GamePanel extends JPanel {
 						else if(tmp==3) g.setColor(Color.YELLOW);
 						if(tmp!=0&&tmp!=4) {
 							Polygon p = new Polygon();
+							//drawing lines -
 							if(k==0) {
 								p.addPoint(j*size+beginX, i*size+beginY);
 								p.addPoint((j+1)*size+beginX, i*size+beginY);
 								p.addPoint((j+1)*size+beginX, i*size+beginY+lineSize);
 								p.addPoint(j*size+beginX, i*size+beginY+lineSize);
-								//g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, i*size+beginY);
 							}
+							//drawing lines |
 							else if(k==1) {
 								p.addPoint(j*size+beginX, i*size+beginY);
 								p.addPoint(j*size+beginX, (i+1)*size+beginY);
 								p.addPoint(j*size+beginX+lineSize, (i+1)*size+beginY);
-								p.addPoint(j*size+beginX+lineSize, i*size+beginY);
-								//g.drawLine(j*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+								p.addPoint(j*size+beginX+lineSize, i*size+beginY);							
 							}
+							//drawing lines \
 							else if(k==2) {
 								p.addPoint(j*size+beginX, i*size+beginY);
 								p.addPoint((j+1)*size+beginX, (i+1)*size+beginY);
 								p.addPoint((j+1)*size+beginX, (i+1)*size+beginY+lineSize);
-								p.addPoint(j*size+beginX, i*size+beginY+lineSize);
-								//g.drawLine(j*size+beginX, i*size+beginY, (j+1)*size+beginX, (i+1)*size+beginY);
+								p.addPoint(j*size+beginX, i*size+beginY+lineSize);								
 							}
+							//drawing lines /
 							else if(k==3) {
 								p.addPoint((j+1)*size+beginX, i*size+beginY);
 								p.addPoint(j*size+beginX, (i+1)*size+beginY);
 								p.addPoint(j*size+beginX, (i+1)*size+beginY+lineSize);
-								p.addPoint((j+1)*size+beginX, i*size+beginY+lineSize);
-								//g.drawLine((j+1)*size+beginX, i*size+beginY, j*size+beginX, (i+1)*size+beginY);
+								p.addPoint((j+1)*size+beginX, i*size+beginY+lineSize);								
 							}
 							g.fillPolygon(p);
 						}
 					}
 				}
 			}
-			//current position
 			g.setColor(Color.WHITE);
+			//middle point
 			g.fillOval(beginX+Main.controller.returnPosX()*size-circleSize/2, beginY+Main.controller.returnPosY()*size-circleSize/2, circleSize, circleSize);
 
-			//mouse position
 			if (Main.controller.getCurrentPlayer() == 1) {
 				g.setColor(Color.BLUE);
 			}
