@@ -123,7 +123,7 @@ public class GamePanel extends JPanel {
 	  	}		
 	}
 	
-	//game-ending class
+	//end status
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
