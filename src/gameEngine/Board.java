@@ -22,6 +22,7 @@ public class Board {
 	protected int getY() {
 		return posY;
 	}
+	//if Edge
 	private int ifE(int i, int j, int k) {
 		if(links[i][j][k]>0) return 1;
 		else return 0;

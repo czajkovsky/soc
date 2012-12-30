@@ -22,6 +22,7 @@ public class Controller {
 		this.color=1;
 		this.gameStatus = 1;
 		board = new Board(width, height);
+		//creating two players
 		player = new Player[2];
 		player[0] = new Human(2);
 		player[1] = (p2 == 0) ? (new Human(1)) : (new Computer(1));
@@ -46,14 +47,6 @@ public class Controller {
 	}
 
 	Random rand;
-
-	/*
- 	getLink return statement: 
- 	-1 - connection impossible 
- 	0 - not connected 
-	1 - connected by player 1 
-	2 - connected by player 2
-	 */
 
 	public int getBoardHeight() {
 		return this.board.getHeight();
@@ -97,6 +90,7 @@ public class Controller {
 	 * 1 - player 1 wins
 	 * 2 - player 2 wins
 	 */
+	
 	public int makeMove(int x, int y) {
 		Player curPlayer;
 		if (this.color == 1) curPlayer = player[0];

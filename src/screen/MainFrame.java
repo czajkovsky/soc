@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
 	MainFrame() {		
 		super("Paper Soccer");
 		
+		//size of the application
 		Dimension minSize = new Dimension(960,720);
 		
 		this.setSize(minSize);
@@ -32,6 +33,7 @@ public class MainFrame extends JFrame {
 		this.setVisible(true);
 		this.setMinimumSize(minSize);
 		
+		//handling keyboard
 		class keyListener implements KeyListener {
 			@Override
 			public void keyPressed(KeyEvent arg0) {}
@@ -47,6 +49,7 @@ public class MainFrame extends JFrame {
 		
 		pnbot = new GamePanel();
 		
+		//creating menu
 		JPanel pntop = new JPanel();
 		pntop.setLayout(new GridLayout(3,1));
 		
@@ -74,6 +77,7 @@ public class MainFrame extends JFrame {
 		pnl2.add(txtw);
 		pntop.add(pnl2);
 		
+		//creating buttons and their functions
 		playButton = new JButton("Play");
 		playButton.addActionListener(new ActionListener() {
 			@Override
@@ -142,6 +146,7 @@ public class MainFrame extends JFrame {
 			}			
 		});
 		
+		//adding buttons
 		JPanel pnl4 = new JPanel();
 		pnl4.setLayout(new FlowLayout());
 		pnl4.add(playButton);

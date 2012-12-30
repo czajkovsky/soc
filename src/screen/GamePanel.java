@@ -57,6 +57,7 @@ public class GamePanel extends JPanel {
 			beginX = this.getWidth()/2 - (boardWidth+2)*size/2;
 			beginY = this.getHeight()/2 - (boardHeight+4)*size/2;
 		
+			//drawing goal-posts marks
 			str = "player 1's target";
 			g.setColor(Color.BLUE);
 			g.drawChars(str.toCharArray(), 0, str.length(), beginX, beginY+3*size/2);
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel {
 			g.setColor(Color.RED);
 			g.drawChars(str.toCharArray(), 0, str.length(), beginX, beginY+(Main.controller.getBoardHeight()-1)*size);
 	  	
+			//drawing lines
 			for(int i=0; i<=Main.controller.getBoardHeight(); i++) {
 				for(int j=0; j<=Main.controller.getBoardWidth(); j++) {
 					for(int k=0; k<=3; k++) {
@@ -107,10 +109,10 @@ public class GamePanel extends JPanel {
 					}
 				}
 			}
+			//current position
 			g.setColor(Color.WHITE);
-			//middle point
 			g.fillOval(beginX+Main.controller.returnPosX()*size-circleSize/2, beginY+Main.controller.returnPosY()*size-circleSize/2, circleSize, circleSize);
-
+			//mouse position
 			if (Main.controller.getCurrentPlayer() == 1) {
 				g.setColor(Color.BLUE);
 			}
@@ -121,6 +123,7 @@ public class GamePanel extends JPanel {
 	  	}		
 	}
 	
+	//game-ending class
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -161,6 +164,7 @@ public class GamePanel extends JPanel {
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
+	//get mouse position
 	class mouseMotionListener implements MouseMotionListener {
 		@Override
 		public void mouseDragged(MouseEvent e) {}
