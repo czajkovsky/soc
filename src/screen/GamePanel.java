@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import main.Main;
 
 public class GamePanel extends JPanel {
-	protected int boardWidth, boardHeight;
+	protected int boardWidth, boardHeight, maxEdges;
 	final int size = 30;
 	final int circleSize = 6;
 	final int lineSize = 2;
@@ -26,6 +26,8 @@ public class GamePanel extends JPanel {
 		boardHeight = 10;
 		beginX = 160;
 		beginY = 60;
+		// normally maximum number of edges is not limited
+		maxEdges = 0;
 		this.setBackground(Color.BLACK);
 		ml = new mouseListener();
 		mml = new mouseMotionListener();

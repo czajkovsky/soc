@@ -40,7 +40,6 @@ public class Controller {
             this.color = tmpColor;
             System.out.println(tmpColor);
             while (flag >= 0 && ((tmpColor = this.board.removeEdge(tmpColor)) == this.color)) {
-            	System.out.println(tmpColor);
             	continue;
             }
         }

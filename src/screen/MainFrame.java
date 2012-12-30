@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 	static private GamePanel pnbot;
 	
 	static private JButton playButton, stopButton, undoButton, exitButton;
-	static private JTextField txth, txtw;
+	static private JTextField txth, txtw, txtedges;
 	static private JComboBox cb1;
 	
 	MainFrame() {		
@@ -75,7 +75,13 @@ public class MainFrame extends JFrame {
 		txtw.setText("8");
 		txtw.addKeyListener(kl);
 		pnl2.add(txtw);
+		pnl2.add(new JLabel("and max edge number"));
+		txtedges = new JTextField(8);
+		txtedges.setText("0");
+		txtedges.addKeyListener(kl);
+		pnl2.add(txtedges);
 		pntop.add(pnl2);
+		
 		
 		//creating buttons and their functions
 		playButton = new JButton("Play");
@@ -86,10 +92,12 @@ public class MainFrame extends JFrame {
 				try {
 					int bH = Integer.valueOf(txth.getText());
 					int bW = Integer.valueOf(txtw.getText());
+					int bE = Integer.valueOf(txtedges.getText());
 					if (bH < 8 || bW < 8 || bH > 16 || bW > 16
-						|| bH%2 != 0 || bW%2 != 0) throw new Exception();
+						|| bH%2 != 0 || bW%2 != 0 || bE % 1 != 0) throw new Exception();
 					pnbot.boardHeight = bH;
 					pnbot.boardWidth = bW;
+					pnbot.maxEdges = bE;
 					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, 0);
 					pnbot.setClickable(true);
 					playButton.setEnabled(false);
@@ -98,10 +106,11 @@ public class MainFrame extends JFrame {
 					cb1.setEnabled(false);
 					txth.setEnabled(false);
 					txtw.setEnabled(false);
+					txtedges.setEnabled(false);
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
-					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16.",
+					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16. In addition, only number values can be accepted.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}				
 			}			
@@ -120,6 +129,8 @@ public class MainFrame extends JFrame {
 				cb1.setEnabled(true);
 				txth.setEnabled(true);
 				txtw.setEnabled(true);
+				txtedges.setEnabled(true);
+				
 			}
 		});
 		
@@ -172,6 +183,7 @@ public class MainFrame extends JFrame {
 		cb1.setEnabled(true);
 		txth.setEnabled(true);
 		txtw.setEnabled(true);
+		txtedges.setEnabled(true);
 	}
 	
 	public static void drawBoard() {
