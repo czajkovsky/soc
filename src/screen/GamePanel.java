@@ -125,36 +125,40 @@ public class GamePanel extends JPanel {
 	  	}		
 	}
 	
+	public static void message(int v) {
+		MainFrame.drawBoard();
+		if (v == 1) {
+			JOptionPane.showMessageDialog(null, "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+			Main.controller.stop();
+			MainFrame.unlockButtons();
+			MainFrame.drawBoard();
+		}
+		else if (v == 2) {				
+			JOptionPane.showMessageDialog(null, "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+			Main.controller.stop();
+			MainFrame.unlockButtons();
+			MainFrame.drawBoard();
+		}
+		else if (v == 3) {
+			JOptionPane.showMessageDialog(null, "As Player 2 got stuck, Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+			Main.controller.stop();
+			MainFrame.unlockButtons();
+			MainFrame.drawBoard();
+		}
+		else if (v == 4) {
+			JOptionPane.showMessageDialog(null, "As Player 1 got stuck, Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
+			Main.controller.stop();
+			MainFrame.unlockButtons();
+			MainFrame.drawBoard();
+		}
+	}
+	
 	//end status
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			int tmp = Main.controller.makeMove(xpos, ypos);
-			repaint();
-			if (tmp == 1) {
-				JOptionPane.showMessageDialog(getParent(), "Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-				Main.controller.stop();
-				MainFrame.unlockButtons();
-				repaint();
-			}
-			else if (tmp == 2) {				
-				JOptionPane.showMessageDialog(getParent(), "Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-				Main.controller.stop();
-				MainFrame.unlockButtons();
-				repaint();
-			}
-			else if (tmp == 3) {
-				JOptionPane.showMessageDialog(getParent(), "As Player 2 got stuck, Player 1 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-				Main.controller.stop();
-				MainFrame.unlockButtons();
-				repaint();
-			}
-			else if (tmp == 4) {
-				JOptionPane.showMessageDialog(getParent(), "As Player 1 got stuck, Player 2 wins!", "Winner", JOptionPane.INFORMATION_MESSAGE);
-				Main.controller.stop();
-				MainFrame.unlockButtons();
-				repaint();
-			}
+			message(tmp);
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {}

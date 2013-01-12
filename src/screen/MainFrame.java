@@ -5,22 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.*;
-import javax.swing.border.Border;
-
 import main.Main;
 
 public class MainFrame extends JFrame {	
-	private final String[] players = {"Human", "Computer"};	
+	private final String[] players = {"Human", "Computer-Adam", "Computer-Mateusz", "Computer-Piotr"};	
 	
 	static private GamePanel pnbot;
 	
 	static private JButton playButton, stopButton, undoButton, exitButton;
 	static private JTextField txth, txtw, txtedges;
-	static private JComboBox cb1;
+	static private JComboBox cb1, cb2;
 	
 	MainFrame() {		
 		super("Paper Soccer");
@@ -55,11 +50,14 @@ public class MainFrame extends JFrame {
 		
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(new FlowLayout());
-		pnl1.add(new JLabel("Select opponent"));
+		pnl1.add(new JLabel("Select players"));
 		cb1 = new JComboBox();
-		for (int i=0; i<2; i++) cb1.addItem(players[i]);
-		cb1.enable(false);
+		for (int i=0; i<players.length; i++) cb1.addItem(players[i]);
 		pnl1.add(cb1);
+		pnl1.add(new JLabel("vs"));
+		cb2 = new JComboBox();
+		for (int i=0; i<players.length; i++) cb2.addItem(players[i]);
+		pnl1.add(cb2);
 		pntop.add(pnl1);
 		
 		JPanel pnl2 = new JPanel();
@@ -100,15 +98,17 @@ public class MainFrame extends JFrame {
 						pnbot.maxEdges = bE;
 					else
 						pnbot.maxEdges = bE+1;
-					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, 0);
+					
 					pnbot.setClickable(true);
 					playButton.setEnabled(false);
 					stopButton.setEnabled(true);
 					undoButton.setEnabled(true);
 					cb1.setEnabled(false);
+					cb2.setEnabled(false);
 					txth.setEnabled(false);
 					txtw.setEnabled(false);
 					txtedges.setEnabled(false);
+					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb1.getSelectedIndex(), cb2.getSelectedIndex());
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
@@ -129,6 +129,7 @@ public class MainFrame extends JFrame {
 				undoButton.setEnabled(false);
 				pnbot.setClickable(false);
 				cb1.setEnabled(true);
+				cb2.setEnabled(true);
 				txth.setEnabled(true);
 				txtw.setEnabled(true);
 				txtedges.setEnabled(true);
@@ -166,7 +167,7 @@ public class MainFrame extends JFrame {
 		pnl4.add(stopButton);
 		pnl4.add(undoButton);
 		pnl4.add(exitButton);
-		pntop.add(pnl4);		
+		pntop.add(pnl4);
 		
 		stopButton.setEnabled(false);
 		undoButton.setEnabled(false);
@@ -183,6 +184,7 @@ public class MainFrame extends JFrame {
 		stopButton.setEnabled(false);
 		undoButton.setEnabled(false);
 		cb1.setEnabled(true);
+		cb2.setEnabled(true);
 		txth.setEnabled(true);
 		txtw.setEnabled(true);
 		txtedges.setEnabled(true);

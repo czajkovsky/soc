@@ -2,8 +2,6 @@ package gameEngine;
 
 import main.Main;
 
-
-
 public class Human implements Player {
 	Human(int val) {
 		this.val = val;

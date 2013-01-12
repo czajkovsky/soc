@@ -2,6 +2,8 @@ package gameEngine;
 
 import java.util.Random;
 
+import screen.GamePanel;
+
 public class Controller {
 	private int color;
 	private int gameStatus;
@@ -18,15 +20,31 @@ public class Controller {
 		return this.gameStatus;
 	}
 
-	public void start(int width, int height, int maxEdges, int p2) {
+	public void start(int width, int height, int maxEdges, int p1, int p2) {
 		this.color=1;
 		this.gameStatus = 1;
 		board = new Board(width, height, maxEdges);
 		//creating two players
 		player = new Player[2];
-		player[0] = new Human(2);
-		player[1] = (p2 == 0) ? (new Human(1)) : (new Computer(1));
+		switch(p1) {
+		case 0: player[0] = new Human(2); break;
+		case 1: player[0] = new Computer(2); break;
+		case 2: player[0] = new Computer(2); break;
+		case 3: player[0] = new Computer(2); break;
+		}
+		switch(p2) {
+		case 0: player[1] = new Human(1); break;
+		case 1: player[1] = new Computer(1); break;
+		case 2: player[1] = new Computer(1); break;
+		case 3: player[1] = new Computer(1); break;
+		}
 		System.out.println("gameEngine.Controller start");
+		System.out.println(p2);
+		
+		if (player[0].getClass() != new Human(-1).getClass()) {
+			int mv = makeMove(0,0);
+			GamePanel.message(mv);
+		}
 	}
 
 	public void stop() {
@@ -34,7 +52,7 @@ public class Controller {
 	}
 	
 	public void undo(int flag) {
-		// -1 normal redo, >-1 loop redo
+		// -2 force redo, -1 normal redo, >-1 loop redo
         int tmpColor = this.board.removeEdge(-1); 
         if (tmpColor >= 0) {
             this.color = tmpColor;
@@ -42,6 +60,10 @@ public class Controller {
             	continue;
             }
         }
+        if (flag != -2 && player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
+			int mv = makeMove(0,0);
+			GamePanel.message(mv);
+		}
 	}
 
 	Random rand;
@@ -119,9 +141,9 @@ public class Controller {
 			System.out.println("change player");
 			this.color+=1;
 			this.color%=2;
-			if (!player[0].getClass().equals(player[1].getClass())) {
-				curPlayer = player[this.color];
-				mv = curPlayer.makeMove(0, 0, board);
+			
+			if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
+				return makeMove(0,0);
 			}
 		}
 		
