@@ -28,20 +28,20 @@ public class Controller {
 		player = new Player[2];
 		switch(p1) {
 		case 0: player[0] = new Human(2); break;
-		case 1: player[0] = new Computer(2); break;
+		case 1: player[0] = new ComputerAdam(2); break;
 		case 2: player[0] = new Computer(2); break;
 		case 3: player[0] = new Computer(2); break;
 		}
 		switch(p2) {
 		case 0: player[1] = new Human(1); break;
-		case 1: player[1] = new Computer(1); break;
+		case 1: player[1] = new ComputerAdam(1); break;
 		case 2: player[1] = new Computer(1); break;
 		case 3: player[1] = new Computer(1); break;
 		}
 		System.out.println("gameEngine.Controller start");
 		System.out.println(p2);
 		
-		if (player[0].getClass() != new Human(-1).getClass()) {
+		if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
 			int mv = makeMove(0,0);
 			GamePanel.message(mv);
 		}
@@ -61,8 +61,8 @@ public class Controller {
             }
         }
         if (flag != -2 && player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
-			int mv = makeMove(0,0);
-			GamePanel.message(mv);
+			//int mv = makeMove(0,0);
+			//GamePanel.message(mv);
 		}
 	}
 
@@ -112,41 +112,52 @@ public class Controller {
 	 */
 	
 	public int makeMove(int x, int y) {
-		Player curPlayer;
-		if (this.color == 1) curPlayer = player[0];
-		else curPlayer = player[1];
-		
 		boolean endOfTurn=false;
-		int mv = curPlayer.makeMove(x,y,board);
-		if(mv==-1) System.out.println("impossible");
-		else if(mv==3) {
-			System.out.println("top player has lost");
-			return 1;
-		}
-		else if(mv==4) {
-			System.out.println("top player has win");
-			return 2;
-		}
-		else if(mv==5) { 
-			System.out.println("dead end");
-			if (this.color == 1)
-				return 3;
-			else
-				return 4;
-			}
-		else if(mv==1) {
-			System.out.println("reflection");
-		}
-		else if(mv==0) {
-			System.out.println("change player");
-			this.color+=1;
-			this.color%=2;
-			
-			if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
-				return makeMove(0,0);
-			}
-		}
 		
+		while (!endOfTurn) {
+			Player curPlayer;
+			if (this.color == 1) curPlayer = player[0];
+			else curPlayer = player[1];			
+			
+			int mv = curPlayer.makeMove(x,y,board);
+			if(mv==-1) {
+				System.out.println("iimpossible");
+				return 0;
+			}
+			else if(mv==3) {
+				System.out.println("top player has lost");
+				return 1;
+			}
+			else if(mv==4) {
+				System.out.println("top player has win");
+				return 2;
+			}
+			else if(mv==5) { 
+				System.out.println("dead end");
+				if (this.color == 1)
+					return 3;
+				else
+					return 4;
+			}
+			else if(mv==1) {
+				System.out.println("rreflection");
+				return 0;
+			}
+			else if(mv==0) {
+				System.out.println("cchange player");
+				this.color+=1;
+				this.color%=2;
+				
+				if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
+					//System.out.println("From " + board.getX() + "," + board.getY());
+					//return makeMove(0,0);
+				}
+				else {
+					endOfTurn = true;
+				}
+			}
+		}		
+		System.out.println("Wychodzę");
 		return 0;
 	}
 }

@@ -153,21 +153,35 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
+	int lastX=0, lastY=0;
+	
 	//end status
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			setClickable(false);
+			System.err.println(e.getClickCount() + " " + e.getWhen());
+			System.out.println("Starting " + xpos + "," + ypos);
 			int tmp = Main.controller.makeMove(xpos, ypos);
+			lastX = xpos;
+			lastY = ypos;
 			message(tmp);
+			setClickable(true);
 		}
 		@Override
-		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseEntered(MouseEvent e) {
+			
+		}
 		@Override
-		public void mouseExited(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent e) {}
 		@Override
-		public void mousePressed(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent e) {
+			
+		}
 		@Override
-		public void mouseReleased(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent e) {
+			
+		}
 	}
 	
 	//get mouse position
@@ -201,8 +215,6 @@ public class GamePanel extends JPanel {
 			ypos = (boardHeight+4)/2;
 			repaint();		
 		}
-	}
-	
-	
+	}	
 	
 }
