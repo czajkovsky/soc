@@ -115,13 +115,15 @@ public class GamePanel extends JPanel {
 			g.setColor(Color.WHITE);
 			g.fillOval(beginX+Main.controller.returnPosX()*size-circleSize/2, beginY+Main.controller.returnPosY()*size-circleSize/2, circleSize, circleSize);
 			//mouse position
-			if (Main.controller.getCurrentPlayer() == 1) {
-				g.setColor(Color.BLUE);
-			}
-			else {
-				g.setColor(Color.RED);
-			}
-			g.fillOval(beginX+xpos*size-circleSize/2, beginY+ypos*size-circleSize/2, circleSize, circleSize);
+			if (!(xpos == 0 && ypos == 0)) {
+				if (Main.controller.getCurrentPlayer() == 1) {
+					g.setColor(Color.BLUE);
+				}
+				else {
+					g.setColor(Color.RED);
+				}
+				g.fillOval(beginX+xpos*size-circleSize/2, beginY+ypos*size-circleSize/2, circleSize, circleSize);
+			}			
 	  	}		
 	}
 	
@@ -211,8 +213,8 @@ public class GamePanel extends JPanel {
 		else {
 			this.addMouseListener(ml);
 			this.addMouseMotionListener(mml);
-			xpos = (boardWidth+2)/2;
-			ypos = (boardHeight+4)/2;
+			xpos = 0; //(boardWidth+2)/2;
+			ypos = 0; //(boardHeight+4)/2;
 			repaint();		
 		}
 	}	
