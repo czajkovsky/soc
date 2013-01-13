@@ -61,8 +61,8 @@ public class Controller {
             }
         }
         if (flag != -2 && player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
-			//int mv = makeMove(0,0);
-			//GamePanel.message(mv);
+			int mv = makeMove(0,0);
+			GamePanel.message(mv);
 		}
 	}
 

@@ -115,7 +115,7 @@ public class GamePanel extends JPanel {
 			g.setColor(Color.WHITE);
 			g.fillOval(beginX+Main.controller.returnPosX()*size-circleSize/2, beginY+Main.controller.returnPosY()*size-circleSize/2, circleSize, circleSize);
 			//mouse position
-			if (!(xpos == 0 && ypos == 0)) {
+			if (xpos > 0 && xpos < Main.controller.getBoardWidth() && ypos < Main.controller.getBoardHeight() && ypos > 0) {
 				if (Main.controller.getCurrentPlayer() == 1) {
 					g.setColor(Color.BLUE);
 				}
