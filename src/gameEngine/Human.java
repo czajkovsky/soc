@@ -101,5 +101,4 @@ public class Human implements Player {
 			return -1;
 		}
 	}
-
 }
