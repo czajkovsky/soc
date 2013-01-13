@@ -17,6 +17,7 @@ public class GamePanel extends JPanel {
 	final int circleSize = 6;
 	final int lineSize = 2;
 	int beginX, beginY;
+	long lastClick;
 	
 	int xpos, ypos;
 	
@@ -35,6 +36,8 @@ public class GamePanel extends JPanel {
 		//middle position of goal-posts
 		xpos = (boardWidth+2)/2;
 		ypos = (boardHeight+4)/2;
+		
+		lastClick = 0;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -161,14 +164,20 @@ public class GamePanel extends JPanel {
 	class mouseListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			setClickable(false);
-			System.err.println(e.getClickCount() + " " + e.getWhen());
-			System.out.println("Starting " + xpos + "," + ypos);
-			int tmp = Main.controller.makeMove(xpos, ypos);
-			lastX = xpos;
-			lastY = ypos;
-			message(tmp);
-			setClickable(true);
+			if (e.getWhen() == lastClick) {
+				e.consume();
+			}
+			else {
+				lastClick = e.getWhen();
+				setClickable(false);
+				System.err.println(e.getClickCount() + " " + e.getWhen());
+				System.out.println("Starting " + xpos + "," + ypos);
+				int tmp = Main.controller.makeMove(xpos, ypos);
+				lastX = xpos;
+				lastY = ypos;
+				message(tmp);
+				setClickable(true);
+			}
 		}
 		@Override
 		public void mouseEntered(MouseEvent e) {
