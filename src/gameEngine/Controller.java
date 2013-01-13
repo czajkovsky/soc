@@ -38,7 +38,7 @@ public class Controller {
 		case 3: player[1] = new ComputerPiotr(1); break;
 		}
 		
-		if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
+		if (p1 != 0) {
 			int mv = makeMove(0,0);
 			GamePanel.message(mv);
 		}

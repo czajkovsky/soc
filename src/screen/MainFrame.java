@@ -50,11 +50,11 @@ public class MainFrame extends JFrame {
 		
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(new FlowLayout());
-		pnl1.add(new JLabel("Select players"));
+		pnl1.add(new JLabel("Player 2: "));
 		cb1 = new JComboBox();
 		for (int i=0; i<players.length; i++) cb1.addItem(players[i]);
 		pnl1.add(cb1);
-		pnl1.add(new JLabel("vs"));
+		pnl1.add(new JLabel(" Player 1: "));
 		cb2 = new JComboBox();
 		for (int i=0; i<players.length; i++) cb2.addItem(players[i]);
 		pnl1.add(cb2);
@@ -107,7 +107,7 @@ public class MainFrame extends JFrame {
 					txth.setEnabled(false);
 					txtw.setEnabled(false);
 					txtedges.setEnabled(false);
-					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb2.getSelectedIndex(), cb1.getSelectedIndex());
+					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb1.getSelectedIndex(), cb2.getSelectedIndex());
 				}
 				catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16. In addition, only positive number values can be accepted.",
