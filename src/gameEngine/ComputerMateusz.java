@@ -19,9 +19,10 @@ public class ComputerMateusz implements Player {
 		int posY=Main.controller.returnPosY();
 		
 		int newX=posX, newY=posY;
-		
+		int targetY;
+		if(this.val==1) targetY=0;
+		else targetY=boardHeight;
 		int targetX=boardWidth/2;
-		int targetY=0;
 		
 		int size=16;
 		
