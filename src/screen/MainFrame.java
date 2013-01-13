@@ -108,7 +108,7 @@ public class MainFrame extends JFrame {
 					txth.setEnabled(false);
 					txtw.setEnabled(false);
 					txtedges.setEnabled(false);
-					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb1.getSelectedIndex(), cb2.getSelectedIndex());
+					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb2.getSelectedIndex(), cb1.getSelectedIndex());
 				}
 				catch (Exception e) {
 					System.out.println("Exception");
