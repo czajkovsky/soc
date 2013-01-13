@@ -28,13 +28,13 @@ public class Controller {
 		player = new Player[2];
 		switch(p1) {
 		case 0: player[0] = new Human(2); break;
-		case 1: player[0] = new Computer(2); break;
+		case 1: player[0] = new ComputerAdam(2); break;
 		case 2: player[0] = new ComputerMateusz(2); break;
 		case 3: player[0] = new Computer(2); break;
 		}
 		switch(p2) {
 		case 0: player[1] = new Human(1); break;
-		case 1: player[1] = new Computer(1); break;
+		case 1: player[1] = new ComputerAdam(1); break;
 		case 2: player[1] = new ComputerMateusz(1); break;
 		case 3: player[1] = new Computer(1); break;
 		}
