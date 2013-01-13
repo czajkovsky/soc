@@ -170,8 +170,6 @@ public class GamePanel extends JPanel {
 			else {
 				lastClick = e.getWhen();
 				setClickable(false);
-				System.err.println(e.getClickCount() + " " + e.getWhen());
-				System.out.println("Starting " + xpos + "," + ypos);
 				int tmp = Main.controller.makeMove(xpos, ypos);
 				lastX = xpos;
 				lastY = ypos;
@@ -222,8 +220,8 @@ public class GamePanel extends JPanel {
 		else {
 			this.addMouseListener(ml);
 			this.addMouseMotionListener(mml);
-			xpos = 0; //(boardWidth+2)/2;
-			ypos = 0; //(boardHeight+4)/2;
+			xpos = 0;
+			ypos = 0;
 			repaint();		
 		}
 	}	

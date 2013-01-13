@@ -176,7 +176,6 @@ public class ComputerPiotr implements Player {
 				Main.controller.updatePos(bestX,bestY);
 				x = bestX;
 				y = bestY;
-				System.out.println("doszlo");
 				int neighbours=Main.controller.countNeighbours(bestX, bestY);
 				//reflection
 				if(neighbours==1) gameRes = 0;

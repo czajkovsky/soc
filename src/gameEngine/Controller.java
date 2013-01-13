@@ -12,7 +12,6 @@ public class Controller {
 
 	public Controller() {
 		this.gameStatus = 0;
-		System.out.println("gameEngine.Controller");
 		rand = new Random();
 	}
 
@@ -38,8 +37,6 @@ public class Controller {
 		case 2: player[1] = new ComputerMateusz(1); break;
 		case 3: player[1] = new ComputerPiotr(1); break;
 		}
-		System.out.println("gameEngine.Controller start");
-		System.out.println(p2);
 		
 		if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
 			int mv = makeMove(0,0);
@@ -121,43 +118,32 @@ public class Controller {
 			
 			int mv = curPlayer.makeMove(x,y,board);
 			if(mv==-1) {
-				System.out.println("iimpossible");
 				return 0;
 			}
 			else if(mv==3) {
-				System.out.println("top player has lost");
 				return 1;
 			}
 			else if(mv==4) {
-				System.out.println("top player has win");
 				return 2;
 			}
 			else if(mv==5) { 
-				System.out.println("dead end");
 				if (this.color == 1)
 					return 3;
 				else
 					return 4;
 			}
 			else if(mv==1) {
-				System.out.println("rreflection");
 				return 0;
 			}
 			else if(mv==0) {
-				System.out.println("cchange player");
 				this.color+=1;
 				this.color%=2;
 				
-				if (player[(this.color+1)%2].getClass() != new Human(-1).getClass()) {
-					//System.out.println("From " + board.getX() + "," + board.getY());
-					//return makeMove(0,0);
-				}
-				else {
+				if (player[(this.color+1)%2].getClass() == new Human(-1).getClass()) {
 					endOfTurn = true;
 				}
 			}
 		}		
-		System.out.println("Wychodzę");
 		return 0;
 	}
 }

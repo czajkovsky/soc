@@ -10,7 +10,6 @@ public class ComputerAdam implements Player {
 	int val;
 	
 	ComputerAdam(int val) {
-		System.out.println("Creating computer");
 		this.val = val;
 	}
 
@@ -130,7 +129,6 @@ public class ComputerAdam implements Player {
 				}
 				
 				int mv = createMove(x,y,board);
-				System.out.println(mv);
 				if(mv==3) {
 					return 3;
 				}
@@ -145,8 +143,6 @@ public class ComputerAdam implements Player {
 					}
 				}
 				else if(mv==1) {
-					System.out.println("reflection");
-					
 					return makeMoveVisit(board, false);
 				}
 				else if(mv==0) {
@@ -162,7 +158,6 @@ public class ComputerAdam implements Player {
 	
 	@Override
 	public int makeMove(int x, int y, Board board) {
-		System.out.println("Computer works");
 
 		depth = 0;
 		

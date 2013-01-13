@@ -59,7 +59,6 @@ public class Board {
                 if (lastEdgeIndex > 0) {
                 	--lastEdgeIndex;
                 	links[movements.elementAt(lastEdgeIndex)[3]][movements.elementAt(lastEdgeIndex)[2]][movements.elementAt(lastEdgeIndex)[4]] = movements.elementAt(lastEdgeIndex)[5];
-                	System.out.println(lastEdgeIndex);
                 }
                 return tmp;
             }
@@ -71,7 +70,6 @@ public class Board {
 		if (!movements.isEmpty()) {
 			links[movements.elementAt(lastEdgeIndex)[3]][movements.elementAt(lastEdgeIndex)[2]][movements.elementAt(lastEdgeIndex)[4]] = 0;
 			++lastEdgeIndex;
-			System.out.println(lastEdgeIndex);
 		}
 	} 
 	
@@ -82,8 +80,6 @@ public class Board {
 		lastEdgeIndex = 0;
 		posX=boardWidth/2;
 		posY=boardHeight/2;		
-		System.out.println("gameEngine.Board");
-		System.out.println(String.valueOf(width) + "," + String.valueOf(height));
 		links = new int[boardHeight+1][boardWidth+1][4];
 		movements = new Vector<Integer[]>();
 		

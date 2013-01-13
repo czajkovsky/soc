@@ -85,7 +85,6 @@ public class MainFrame extends JFrame {
 		playButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Start");
 				try {
 					int bH = Integer.valueOf(txth.getText());
 					int bW = Integer.valueOf(txtw.getText());
@@ -111,7 +110,6 @@ public class MainFrame extends JFrame {
 					Main.controller.start(pnbot.boardWidth, pnbot.boardHeight, pnbot.maxEdges, cb2.getSelectedIndex(), cb1.getSelectedIndex());
 				}
 				catch (Exception e) {
-					System.out.println("Exception");
 					JOptionPane.showMessageDialog(null, "Width and height dimmensions have to be even, not lower than 8 and not bigger than 16. In addition, only positive number values can be accepted.",
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}				
